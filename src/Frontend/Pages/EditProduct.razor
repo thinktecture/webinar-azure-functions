@@ -9,7 +9,8 @@
     }
     else
     {
-        <h1>@Product.Name</h1>
+        <h1>Edit product</h1>
+        <h2>@Product.Name</h2>
 
         <EditForm Model="@Product" OnValidSubmit="Save">
             <DataAnnotationsValidator />
@@ -25,18 +26,22 @@
                 <InputText id="Name" @bind-Value="Product.Name" class="form-control" />
             </div>
 
+            <div class="form-group">
+                <label for="Price">Price</label>
+                <InputNumber id="Price" @bind-Value="Product.Price" class="form-control" />
+            </div>
 
             <button type="submit" class="btn btn-primary">Save</button>
         </EditForm>
-
     }
-
 </AuthorizeView>
+
 @code {
 
     [Parameter]
     public Guid Id { get; set; }
     public Product Product { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {

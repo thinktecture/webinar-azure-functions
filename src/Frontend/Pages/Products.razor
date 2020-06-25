@@ -15,6 +15,7 @@ else
             <tr>
                 <th>Product Id</th>
                 <th>Name</th>
+                <th>Price</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -24,11 +25,26 @@ else
                 <tr>
                     <td>@product.ProductId</td>
                     <td>@product.Name</td>
+                    <td>@product.Price</td>
                     <td>
                         <AuthorizeView Policy="is-admin">
-                            <a class="nav-link" href="products/edit/@product.Id">
-                                <span class="oi oi-pencil" aria-hidden="true"></span> Edit
-                            </a>
+                            <Authorized>
+                                <a class="nav-link" href="products/edit/@product.Id">
+                                    <span class="oi oi-pencil" aria-hidden="true"></span> Edit
+                                </a>
+                            </Authorized>
+                        </AuthorizeView>
+                        <AuthorizeView>
+                            <Authorized>
+                                <a class="nav-link" href="products/subscribe/@product.Id">
+                                    <span class="oi oi-rss" aria-hidden="true"></span> Subscribe to price changes
+                                </a>
+                            </Authorized>
+                            <NotAuthorized>
+                                <a class="nav-link" href="/.auth/login/aad?post_login_redirect_uri=/">
+                                    <span class="oi oi-lock-locked" aria-hidden="true"></span> Login to subscribe to price changes
+                                </a>
+                            </NotAuthorized>
                         </AuthorizeView>
                     </td>
                 </tr>

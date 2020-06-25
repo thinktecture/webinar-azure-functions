@@ -42,6 +42,7 @@ namespace Backend
 
             existingProduct.ProductId = inputModel.ProductId;
             existingProduct.Name = inputModel.Name;
+            existingProduct.Price = inputModel.Price;
 
             return new NoContentResult();
         }

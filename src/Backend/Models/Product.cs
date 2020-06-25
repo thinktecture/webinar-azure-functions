@@ -16,6 +16,9 @@ namespace AzFnWebinar.Shared
 
         [JsonProperty("productType")]
         public string ProductType { get; set; }
+
+        [JsonProperty("price")]
+        public decimal Price { get; set; }
     }
 
     public class ProductInputModel
@@ -23,6 +26,7 @@ namespace AzFnWebinar.Shared
         public string ProductId { get; set; }
         public string Name { get; set; }
         public string ProductType { get; set; }
+        public decimal Price { get; set; }
     }
 
 }

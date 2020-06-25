@@ -1,0 +1,46 @@
+﻿@page "/products/subscribe/{Id:guid}"
+@inject NavigationManager navigationManager
+@inject ProductRepository Repository
+
+<AuthorizeView Context="auth">
+    @if (Product == null)
+    {
+        <h1>Loading product</h1>
+    }
+    else
+    {
+        <h1>Subscriibe to price changes</h1>
+        <h2>@Product.Name</h2>
+
+        <EditForm Model="@Subscribtion" OnValidSubmit="Save">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="Phonenumber">Phonenumber</label>
+                <InputText id="Phonenumber" @bind-Value="Subscribtion.Phonenumber" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </EditForm>
+    }
+</AuthorizeView>
+
+@code {
+
+    [Parameter]
+    public Guid Id { get; set; }
+    public Product Product { get; set; }
+    public Subscribtion Subscribtion { get; set; } = new Subscribtion();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Product = (await Repository.GetProducts()).FirstOrDefault(p => p.Id == Id);
+    }
+
+    private async Task Save()
+    {
+        Subscribtion.ProductId = Product.ProductId;
+        navigationManager.NavigateTo("/products");
+    }
+}

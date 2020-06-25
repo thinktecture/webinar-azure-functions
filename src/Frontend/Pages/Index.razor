@@ -6,27 +6,12 @@
 
 Welcome to your new app.
 
-@if (User != null)
-{
+<AuthorizeView>
     <dl>
-        @foreach (var claim in User.Claims)
+        @foreach (var claim in context.User.Claims)
         {
             <dt>@claim.Type</dt>
             <dd>@claim.Value</dd>
         }
     </dl>
-}
-
-d
-@code {
-
-    [CascadingParameter]
-    Task<AuthenticationState> AuthenticationState { get; set; }
-
-    public System.Security.Claims.ClaimsPrincipal User { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        User = (await AuthenticationState).User;
-    }
-}
+</AuthorizeView>

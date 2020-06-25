@@ -18,11 +18,16 @@ namespace Frontend
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var response = await _client.GetStringAsync("/.auth/me");
+            var response = await _client.GetAsync("/.auth/me");
+            if (!response.IsSuccessStatusCode)
+            {
+                return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+            }
             EasyAuthPrincipal[] principals;
             try
             {
-                principals = JsonSerializer.Deserialize<EasyAuthPrincipal[]>(response);
+                var content = await response.Content.ReadAsStringAsync();
+                principals = JsonSerializer.Deserialize<EasyAuthPrincipal[]>(content);
             }
             catch (JsonException)
             {
