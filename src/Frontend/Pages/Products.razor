@@ -1,0 +1,47 @@
+﻿@page "/products"
+@inject ProductRepository Repository
+
+<h1>Products</h1>
+
+@if (products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p>Count: @products.Length</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.Name</td>
+                    <td>
+                        <AuthorizeView Policy="is-admin">
+                            <a class="nav-link" href="products/edit/@product.Id">
+                                <span class="oi oi-pencil" aria-hidden="true"></span> Edit
+                            </a>
+                        </AuthorizeView>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Product[] products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await Repository.GetProducts();
+    }
+}

@@ -1,0 +1,51 @@
+﻿@page "/products/edit/{Id:guid}"
+@inject NavigationManager navigationManager
+@inject ProductRepository Repository
+
+<AuthorizeView Policy="is-admin" Context="auth">
+    @if (Product == null)
+    {
+        <h1>Loading product</h1>
+    }
+    else
+    {
+        <h1>@Product.Name</h1>
+
+        <EditForm Model="@Product" OnValidSubmit="Save">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="ProductId">Product Id</label>
+                <InputText id="ProductId" @bind-Value="Product.ProductId" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="Name">Product Name</label>
+                <InputText id="Name" @bind-Value="Product.Name" class="form-control" />
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </EditForm>
+
+    }
+
+</AuthorizeView>
+@code {
+
+    [Parameter]
+    public Guid Id { get; set; }
+    public Product Product { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Product = (await Repository.GetProducts()).FirstOrDefault(p => p.Id == Id);
+    }
+
+    private async Task Save()
+    {
+        await Repository.UpdateProduct(Product);
+        navigationManager.NavigateTo("/products");
+    }
+}

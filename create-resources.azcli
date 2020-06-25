@@ -1,0 +1,63 @@
+location="westeurope"
+group="webinar-azure-functions"
+storage="stazfn001"
+cosmosAccount="cd-az-fn-001"
+databaseName="products"
+functionAppName="azfn-webinar-001"
+
+az group create \
+    --location $location \
+    --name $group
+
+az storage account create \
+    --name $storage \
+    --location $location \
+    --resource-group $group 
+
+az storage blob service-properties update \
+    --account-name $storage \
+    --static-website \
+    --index-document "index.html"
+
+az storage queue create \
+    --name "sms-queue" \
+    --account-name $storage
+
+az cosmosdb create \
+    --name $cosmosAccount \
+    --resource-group $group \
+    --default-consistency-level Eventual
+
+az cosmosdb sql database create \
+    --account-name $cosmosAccount \
+    --resource-group $group \
+    --name $databaseName \
+    --throughput 400
+
+az cosmosdb sql container create \
+    --account-name $cosmosAccount \
+    --resource-group $group \
+    --database-name $databaseName \
+    --name "products" \
+    --partition-key-path "/productType"
+    
+az cosmosdb sql container create \
+    --account-name $cosmosAccount \
+    --resource-group $group \
+    --database-name $databaseName \
+    --name "subscriptions" \
+    --partition-key-path "/phoneNumber"
+
+az eventgrid topic create \
+    --name "products" \
+    --location $location \
+    --resource-group $group
+
+az functionapp create \
+  --name $functionAppName \
+  --storage-account $storage \
+  --consumption-plan-location $location \
+  --resource-group $group \
+  --functions-version 3 \
+  --os-type Windows \
+  --runtime dotnet
