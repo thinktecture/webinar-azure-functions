@@ -1,6 +1,7 @@
 ﻿@page "/products/subscribe/{Id:guid}"
 @inject NavigationManager navigationManager
-@inject ProductRepository Repository
+@inject ProductService ProductService
+@inject SubscriptionService SubscriptionService
 
 <AuthorizeView Context="auth">
     @if (Product == null)
@@ -18,7 +19,7 @@
 
             <div class="form-group">
                 <label for="Phonenumber">Phonenumber</label>
-                <InputText id="Phonenumber" @bind-Value="Subscribtion.Phonenumber" class="form-control" />
+                <InputText id="Phonenumber" @bind-Value="Subscribtion.PhoneNumber" class="form-control" />
             </div>
 
             <button type="submit" class="btn btn-primary">Subscribe</button>
@@ -35,12 +36,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Product = (await Repository.GetProducts()).FirstOrDefault(p => p.Id == Id);
+        Product = (await ProductService.GetProducts()).FirstOrDefault(p => p.Id == Id);
     }
 
     private async Task Save()
     {
         Subscribtion.ProductId = Product.ProductId;
+        await SubscriptionService.Subscribe(Subscribtion);
+
         navigationManager.NavigateTo("/products");
     }
 }

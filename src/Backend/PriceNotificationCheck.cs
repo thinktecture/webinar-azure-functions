@@ -23,7 +23,7 @@ namespace Backend
             [Queue("sms-queue", Connection = "WebinarStorage")]
                 IAsyncCollector<Message> messages,
             [CosmosDB("products", "subscriptions", ConnectionStringSetting = "CosmosDBConnection")]
-                IAsyncCollector<PriceNotification> subscriptions)
+                IAsyncCollector<Subscription> subscriptions)
         {
             var obj = (JObject)eventGridEvent.Data;
             var product = obj.ToObject<Product>();
@@ -33,19 +33,19 @@ namespace Backend
             }
 
             var collectionUri = UriFactory.CreateDocumentCollectionUri("products", "subscriptions");
-            var query = client.CreateDocumentQuery<PriceNotification>(collectionUri, new FeedOptions { EnableCrossPartitionQuery = true })
+            var query = client.CreateDocumentQuery<Subscription>(collectionUri, new FeedOptions { EnableCrossPartitionQuery = true })
                 .Where(s => s.ProductId == product.ProductId)
                 .AsDocumentQuery();
 
             while (query.HasMoreResults)
             {
-                foreach (PriceNotification subscription in await query.ExecuteNextAsync())
+                foreach (Subscription subscription in await query.ExecuteNextAsync())
                 {
                     if (subscription.LastPrice != product.Price)
                     {
                         await messages.AddAsync(new Message()
                         {
-                            PhoneNumber = subscription.PhonenNumber,
+                            PhoneNumber = subscription.PhoneNumber,
                             Body = $"The price of the product '{product.Name}' is now {product.Price} Euro"
                         });
                         subscription.LastPrice = product.Price;

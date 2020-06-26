@@ -19,10 +19,12 @@ namespace Frontend
                 .AddAuthorizationCore(o =>
                 {
                     o.AddPolicy("is-admin", builder => builder.RequireRole("ProductAdmin"));
-                });
-            builder.Services.AddScoped<AuthenticationStateProvider, EasyAuthAuthenticationStateProvider>();
-            builder.Services.AddScoped<ProductRepository>();
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+                })
+                .AddScoped<AuthenticationStateProvider, EasyAuthAuthenticationStateProvider>()
+                .AddScoped<ProductService>()
+                .AddScoped<SubscriptionService>()
+                .AddTransient(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
             await builder.Build().RunAsync();
         }
     }

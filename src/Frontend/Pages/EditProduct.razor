@@ -1,6 +1,6 @@
 ﻿@page "/products/edit/{Id:guid}"
 @inject NavigationManager navigationManager
-@inject ProductRepository Repository
+@inject ProductService ProductService
 
 <AuthorizeView Policy="is-admin" Context="auth">
     @if (Product == null)
@@ -45,12 +45,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Product = (await Repository.GetProducts()).FirstOrDefault(p => p.Id == Id);
+        Product = (await ProductService.GetProducts()).FirstOrDefault(p => p.Id == Id);
     }
 
     private async Task Save()
     {
-        await Repository.UpdateProduct(Product);
+        await ProductService.UpdateProduct(Product);
         navigationManager.NavigateTo("/products");
     }
 }

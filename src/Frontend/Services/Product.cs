@@ -20,11 +20,4 @@ namespace Frontend
         [JsonPropertyName("price")]
         public decimal Price { get; set; }
     }
-
-    public class Subscribtion
-    {
-        public string ProductId { get; set; }
-
-        public string Phonenumber { get; set; }
-    }
 }

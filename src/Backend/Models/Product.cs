@@ -8,25 +8,16 @@ namespace AzFnWebinar.Shared
         [JsonProperty("id")]
         public Guid Id { get; set; }
 
-        [JsonProperty("productId")]
-        public string ProductId { get; set; }
-
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("productType")]
-        public string ProductType { get; set; }
-
         [JsonProperty("price")]
         public decimal Price { get; set; }
-    }
 
-    public class ProductInputModel
-    {
+        [JsonProperty("productId")]
         public string ProductId { get; set; }
-        public string Name { get; set; }
-        public string ProductType { get; set; }
-        public decimal Price { get; set; }
-    }
 
+        [JsonProperty("productType")]
+        public string ProductType { get; set; }
+    }
 }
