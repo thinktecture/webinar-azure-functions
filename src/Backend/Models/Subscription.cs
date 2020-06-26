@@ -1,10 +1,7 @@
-﻿// Default URL for triggering event grid function in the local environment.
-// http://localhost:7071/runtime/webhooks/EventGrid?functionName={functionname}
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 
-namespace Backend
+namespace AzFnWebinar.Backend.Models
 {
     public class Subscription
     {

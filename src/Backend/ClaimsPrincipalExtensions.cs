@@ -1,8 +1,7 @@
 ﻿using System.Security.Claims;
 
-namespace Backend
+namespace AzFnWebinar.Backend
 {
-
     public static class ClaimsPrincipalExtensions
     {
         public static bool IsAdmin(this ClaimsPrincipal principal)

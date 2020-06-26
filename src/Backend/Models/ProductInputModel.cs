@@ -1,4 +1,4 @@
-﻿namespace AzFnWebinar.Shared
+﻿namespace AzFnWebinar.Backend.Models
 {
     public class ProductInputModel
     {

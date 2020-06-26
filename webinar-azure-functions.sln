@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{104D71DB-7694-41BE-B43A-A1A988BD8F0D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "src\Backend\Backend.csproj", "{0EF5D3C9-5A6E-4E51-A27A-740CB12F0CEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzFnWebinar.Backend", "src\Backend\AzFnWebinar.Backend.csproj", "{0EF5D3C9-5A6E-4E51-A27A-740CB12F0CEA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend", "src\Frontend\Frontend.csproj", "{74040F16-8FBF-4701-BB1E-498293FF15F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzFnWebinar.Frontend", "src\Frontend\AzFnWebinar.Frontend.csproj", "{74040F16-8FBF-4701-BB1E-498293FF15F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿namespace Backend
+﻿namespace AzFnWebinar.Backend.Models
 {
     public class Message
     {

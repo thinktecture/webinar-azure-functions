@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Frontend
+namespace AzFnWebinar.Frontend.Authentication
 {
     public class EasyAuthAuthenticationStateProvider : AuthenticationStateProvider
     {

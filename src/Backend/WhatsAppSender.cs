@@ -1,9 +1,10 @@
+using AzFnWebinar.Backend.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 
-namespace Backend
+namespace AzFnWebinar.Backend
 {
     public class WhatsAppSender
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace Frontend
+namespace AzFnWebinar.Frontend.Services
 {
     public class Product
     {

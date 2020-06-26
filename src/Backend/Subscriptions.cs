@@ -1,10 +1,11 @@
+using AzFnWebinar.Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using System;
 using System.Security.Claims;
 
-namespace Backend
+namespace AzFnWebinar.Backend
 {
     public static class Subscriptions
     {

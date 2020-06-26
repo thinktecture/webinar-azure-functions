@@ -1,4 +1,4 @@
-using AzFnWebinar.Shared;
+using AzFnWebinar.Backend.Models;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.EventGrid.Models;
 using Microsoft.Azure.WebJobs;
@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Backend
+namespace AzFnWebinar.Backend
 {
     public class EventGridBridge
     {

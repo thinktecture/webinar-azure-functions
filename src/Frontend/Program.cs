@@ -1,3 +1,5 @@
+using AzFnWebinar.Frontend.Authentication;
+using AzFnWebinar.Frontend.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,7 +7,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Frontend
+namespace AzFnWebinar.Frontend
 {
     public class Program
     {

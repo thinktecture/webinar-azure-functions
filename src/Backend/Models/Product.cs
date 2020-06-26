@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace AzFnWebinar.Shared
+namespace AzFnWebinar.Backend.Models
 {
     public class Product
     {

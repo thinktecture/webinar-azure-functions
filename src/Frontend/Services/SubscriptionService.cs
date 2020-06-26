@@ -2,7 +2,7 @@
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Frontend
+namespace AzFnWebinar.Frontend.Services
 {
     public class SubscriptionService
     {

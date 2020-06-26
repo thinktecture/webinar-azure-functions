@@ -1,4 +1,4 @@
-﻿namespace Frontend
+﻿namespace AzFnWebinar.Frontend.Services
 {
     public class Subscribtion
     {

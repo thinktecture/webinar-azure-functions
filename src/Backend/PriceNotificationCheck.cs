@@ -1,6 +1,6 @@
 // Default URL for triggering event grid function in the local environment.
 // http://localhost:7071/runtime/webhooks/EventGrid?functionName={functionname}
-using AzFnWebinar.Shared;
+using AzFnWebinar.Backend.Models;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using Microsoft.Azure.EventGrid.Models;
@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Backend
+namespace AzFnWebinar.Backend
 {
     public static class PriceNotificationCheck
     {

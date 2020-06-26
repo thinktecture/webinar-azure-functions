@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Frontend
+namespace AzFnWebinar.Frontend.Authentication
 {
     public class EasyAuthPrincipal
     {

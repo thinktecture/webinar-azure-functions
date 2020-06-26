@@ -2,7 +2,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Backend
+namespace AzFnWebinar.Backend
 {
     public static class Keepalive
     {
